@@ -192,3 +192,89 @@ class Files extends React.Component{
 
 const pro = ReactDOM.createRoot(document.getElementById('pro'));
 pro.render(< Files />)
+
+// WATER WILL BOIL OR NOT TELLER
+//GETING USER INPUT MULTIPLE INPUT AND HANDLING WITH ONE EVENT
+
+// BoilingVerdict: to display message using if or else
+function BoilingVerdict(props) {
+    if (props.celsius >= 100) {
+        return <p>The water will boil.</p>;
+    }
+    return <p>The water will not boil.</p>;
+}
+
+class Calculate extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { temperatureC: '', temperatureF: '' }; // Initialize both temperatures
+        this.handleEvent = this.handleEvent.bind(this);
+        this.handleClick = this.handleClick.bind(this);
+        this.handleClick2 = this.handleClick2.bind(this);
+    }
+
+    // Handle event for both by name
+    handleEvent(event) {
+        const name = event.target.name;
+        this.setState({ [name]: event.target.value });
+    }
+
+    // Handle click for Celsius input
+    handleClick(event) {
+        const message = this.getBoilingVerdictMessage(parseFloat(this.state.temperatureC)); // Integrated function with alert
+        alert("Successful code till here. " + message);
+        event.preventDefault();
+    }
+
+    // Handle click for Fahrenheit input
+    handleClick2(event) {
+        alert("handle click 2 is working");
+        event.preventDefault();
+    }
+
+    // Get boiling verdict message
+    getBoilingVerdictMessage(celsius) {
+        if (celsius >= 100) {
+            return "The water will boil.";
+        }
+        return "The water will not boil.";
+    }
+
+    render() {
+        return (
+            <>
+                <form>
+                    <h3>Enter temperature of your value in Celsius</h3>
+                    <label>
+                        <input
+                            name="temperatureC"
+                            type="number"
+                            value={this.state.temperatureC}
+                            onChange={this.handleEvent}
+                        />
+                        <BoilingVerdict celsius={parseFloat(this.state.temperatureC)} />
+                    </label>
+                    <button type="button" onClick={this.handleClick}>Submit</button>
+                </form>
+
+                <form onSubmit={this.handleClick2}>
+                    <h3>Enter temperature of your value in Fahrenheit</h3>
+                    <label>
+                        <input
+                            name="temperatureF"
+                            type="number"
+                            value={this.state.temperatureF}
+                            onChange={this.handleEvent} // Corrected 'onchange' to 'onChange'
+                        />
+                        <input type="submit" value="Submit" />
+                    </label>
+                </form>
+            </>
+        );
+    }
+}
+
+const prac = ReactDOM.createRoot(document.getElementById('prac'));
+prac.render(<Calculate />);
+
+
