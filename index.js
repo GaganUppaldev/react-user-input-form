@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+
+import React from "react";
 import ReactDOM from 'react-dom/client';
+import Example from'./App.jsx';
 
 
 class NameForm extends React.Component {
@@ -278,3 +280,5 @@ const prac = ReactDOM.createRoot(document.getElementById('prac'));
 prac.render(<Calculate />);
 
 
+const cla = ReactDOM.createRoot(document.getElementById('cla'));
+cla.render(<Example></Example>);
