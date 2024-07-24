@@ -1,7 +1,6 @@
-
 import React from "react";
 import ReactDOM from 'react-dom/client';
-import Example from'./App.jsx';
+import { Example, ExampleUse } from './App.jsx';
 
 
 class NameForm extends React.Component {
@@ -281,4 +280,11 @@ prac.render(<Calculate />);
 
 
 const cla = ReactDOM.createRoot(document.getElementById('cla'));
-cla.render(<Example></Example>);
+cla.render(
+  <React.StrictMode>
+  <Example />
+  <ExampleUse />
+</React.StrictMode>
+
+);
+
